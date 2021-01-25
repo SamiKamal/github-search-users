@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 
 const rootUrl = 'https://api.github.com';
 
-export const store = createStore(reducer, {text: 'hello'})
+export const store = createStore(reducer, {})
 const GithubContext = createContext()
 
 const GitHubProvider = ({children}) => {

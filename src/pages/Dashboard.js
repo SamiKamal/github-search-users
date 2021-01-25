@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 const Dashboard = () => {
   return (
     <main>
+      <Navbar/>
       <Search/>
       <Info/>
-      <Repos/>
       <User/>
-      <Navbar/>
+      <Repos/>
     </main>
   );
 };

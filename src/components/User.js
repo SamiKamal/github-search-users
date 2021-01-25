@@ -1,9 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Card from './Card';
 import Followers from './Followers';
-const User = () => {
-  return <h2>User component</h2>;
+const User = ({user, followers}) => {
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        <Card {...user}/>
+        <Followers followers={followers}/>
+      </Wrapper>
+    </section>
+  );
 };
 
 const Wrapper = styled.div`
@@ -16,4 +24,12 @@ const Wrapper = styled.div`
   /* align-items: start; */
 `;
 
-export default User;
+const mapStateToProps = state => {
+  const {githubUser, followers} = state
+  return {
+    user: githubUser,
+    followers
+  }
+}
+
+export default connect(mapStateToProps)(User);

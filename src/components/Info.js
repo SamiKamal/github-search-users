@@ -3,9 +3,57 @@ import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
+import { connect } from 'react-redux';
 
-const UserInfo = () => {
-  return <h2>user info component</h2>;
+const UserInfo = ({reposNum, followers, following, gistsNum}) => {
+  console.log(reposNum);
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+
+        <article className="item">
+          <span className="pink">
+            <GoRepo className="icon"/>
+          </span>
+          <div>
+            <h3>{reposNum}</h3>
+            <p>repos</p>
+          </div>
+        </article>
+
+        <article className="item">
+          <span className="green">
+            <FiUsers className="icon"/>
+          </span>
+          <div>
+            <h3>{followers}</h3>
+            <p>followers</p>
+          </div>
+        </article>
+
+        <article className="item">
+          <span className="purple">
+            <FiUserPlus className="icon"/>
+          </span>
+          <div>
+            <h3>{following}</h3>
+            <p>following</p>
+          </div>
+        </article>
+
+        <article className="item">
+          <span className="yellow">
+            <GoGist className="icon"/>
+          </span>
+          <div>
+            <h3>{gistsNum}</h3>
+            <p>gists</p>
+          </div>
+        </article>
+
+      </Wrapper>
+    </section>
+  );
 };
 
 const Wrapper = styled.section`
@@ -60,4 +108,14 @@ const Wrapper = styled.section`
   }
 `;
 
-export default UserInfo;
+const mapStateToPropos = state => {
+  const {githubUser} = state
+  return {
+    reposNum: githubUser.public_repos,
+    followers: githubUser.followers,
+    following: githubUser.following,
+    gistsNum: githubUser.public_gists
+  }
+}
+
+export default connect(mapStateToPropos)(UserInfo);

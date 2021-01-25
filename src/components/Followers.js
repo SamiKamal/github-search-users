@@ -2,8 +2,23 @@ import React from 'react';
 import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 
-const Followers = () => {
-  return <h2>followers component</h2>;
+const Followers = ({followers}) => {
+  console.log(followers);
+  return (
+    <Wrapper>
+      <div className="followers">
+        {followers.map(({id, login, avatar_url, html_url}) => (
+          <article key={id}>
+            <img src={avatar_url} alt={login}/>
+            <div>
+              <h4>{login}</h4>
+              <a href={html_url} target="_blank">{html_url}</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.article`
@@ -29,7 +44,7 @@ const Wrapper = styled.article`
     font-size: 1rem;
   }
   .followers {
-    overflow: scroll;
+    overflow-y: scroll;
     height: 260px;
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(45px, 1fr));

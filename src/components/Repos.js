@@ -1,9 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { GithubContext } from '../context/context';
 import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
-const Repos = () => {
-  return <h2>repos component</h2>;
+const Repos = ({repos}) => {
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        <Pie3D repos={repos}/>
+        <Column3D repos={repos}/>
+        <Doughnut2D repos={repos}/>
+        <Bar3D repos={repos}/>
+      </Wrapper>
+    </section>
+  );
 };
 
 const Wrapper = styled.div`
@@ -30,4 +40,8 @@ const Wrapper = styled.div`
   }
 `;
 
-export default Repos;
+const mapStateToProps = state => {
+  return {repos: state.repos}
+}
+
+export default connect(mapStateToProps)(Repos);

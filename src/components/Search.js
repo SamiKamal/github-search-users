@@ -1,19 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
-import { GithubContext } from '../context/context';
-const Search = () => {
+import { connect } from 'react-redux';
+const Search = ({change, searchQuery, isSubmit, limit, isError, errorMsg, setError}) => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    isSubmit()
+  }
+  console.log(limit);
+  if (limit?.rate?.remaining === 0) {
+    setError()
+  }
   return (
     <section className="section">
       <Wrapper className="section-center">
-        <form>
+      {isError && (
+        <ErrorWrapper>
+          <p>{errorMsg}</p>
+        </ErrorWrapper>
+      )}
+        <form onSubmit={handleSubmit}>
           <div className="form-control">
             <MdSearch/>
-            <input type="text" placeholder="Enter Github User"/>
+            <input type="text" value={searchQuery} onChange={(e) => change(e.target.value)} placeholder="Enter Github User"/>
             <button type="submit">search</button>
           </div>
         </form>
-        <h3>requests: 60/ 60</h3>
+        <h3>requests: {limit?.rate?.remaining || 0} / {limit?.rate?.limit || 60}</h3>
       </Wrapper>
     </section>
   );
@@ -100,4 +113,17 @@ const ErrorWrapper = styled.article`
     letter-spacing: var(--spacing);
   }
 `;
-export default Search;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    change: (value) => dispatch({type: 'CHANGE_SEARCH', payload: value}),
+    isSubmit: () => dispatch({type: 'TOGGLE_SEARCH'}),
+    setError: () => dispatch({type: 'SET_ERROR', payload: 'You exceeded the request limt!'})
+  }
+}
+
+const mapStateToProps = state => {
+  let {searchQuery, limit, isError, errorMsg} = state
+  return {searchQuery, limit, isError, errorMsg}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

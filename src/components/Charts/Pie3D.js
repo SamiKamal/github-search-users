@@ -13,7 +13,6 @@ const Pie3D = ({repos}) => {
   }, {}));
   let dataWithoutNull = newData.filter(el => el[0] !== 'null')
   let finalData = dataWithoutNull.map(el => {
-      console.log(el[0]);
       return {label: el[0], value: el[1]}
     
   })
@@ -40,7 +39,6 @@ const Pie3D = ({repos}) => {
       data: finalData
     }
   };
-    console.log(repos);
   return (
     <ReactFC {...chartConfigs}/>
     );

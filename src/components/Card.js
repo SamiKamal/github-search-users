@@ -1,5 +1,4 @@
 import React from 'react';
-import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 const Card = ({avatar_url, login, name, bio, company, location, blog, html_url}) => {
@@ -16,9 +15,9 @@ const Card = ({avatar_url, login, name, bio, company, location, blog, html_url})
       </header>
       <p className="bio">{bio}</p>
       <div className="links">
-        <p><MdBusiness/> {company}</p>
-        <p><MdLocationOn/> {location}</p>
-        <a href={`https://${blog}`}><MdLink/> {blog}</a>
+        {company && <p><MdBusiness/> {company}</p>}
+        {location &&<p><MdLocationOn/> {location}</p>}
+        {blog && <a href={`https://${blog}`}><MdLink/> {blog}</a>}
       </div>
     </Wrapper>
   );

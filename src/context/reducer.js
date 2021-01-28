@@ -5,7 +5,6 @@ const reducer =  (state, action) => {
     } else if (type === 'SET_GITHUB_DATA'){
         return {...state, githubUser: payload.user, repos: payload.repos, followers: payload.followers, limit: payload.limit, isLoading: false}
     } else if (type === 'TOGGLE_SEARCH'){
-        console.log('hola');
         return  {...state, isSubmit: state.isSubmit + 1}
     } else if (type === 'LOADING'){
         if (payload === 'ON'){

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
+import { Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
 const Repos = ({repos}) => {
   return (
     <section className="section">

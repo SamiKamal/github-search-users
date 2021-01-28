@@ -10,7 +10,6 @@ const Bar3D = ({repos}) => {
   let newData = repos.map(el => {
     return {label: el.name, value: el.forks}
   })
-  console.log(newData);
   const chartConfigs = {
     type: "bar2d", // The chart type
     width: "100%", // Width of the chart

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Followers = ({followers}) => {
-  console.log(followers);
   return (
     <Wrapper>
       <div className="followers">
@@ -11,7 +10,7 @@ const Followers = ({followers}) => {
             <img src={avatar_url} alt={login}/>
             <div>
               <h4>{login}</h4>
-              <a href={html_url} target="_blank">{html_url}</a>
+              <a href={html_url} target="_blank" rel="noopener noreferrer">{html_url}</a>
             </div>
           </article>
         ))}

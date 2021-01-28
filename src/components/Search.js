@@ -7,7 +7,6 @@ const Search = ({change, searchQuery, isSubmit, limit, isError, errorMsg, setErr
     e.preventDefault()
     isSubmit()
   }
-  console.log(limit);
   if (limit?.rate?.remaining === 0) {
     setError()
   }

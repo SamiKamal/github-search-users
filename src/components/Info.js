@@ -5,7 +5,6 @@ import { FiUsers, FiUserPlus } from 'react-icons/fi';
 import { connect } from 'react-redux';
 
 const UserInfo = ({reposNum, followers, following, gistsNum}) => {
-  console.log(reposNum);
   return (
     <section className="section">
       <Wrapper className="section-center">

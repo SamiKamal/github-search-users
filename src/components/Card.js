@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 const Card = ({avatar_url, login, name, bio, company, location, blog, html_url}) => {
-  console.log(blog);
   return(
     <Wrapper>
       <header>
@@ -11,7 +10,7 @@ const Card = ({avatar_url, login, name, bio, company, location, blog, html_url})
           <h4>{name}</h4>
           <p>{login}</p>
         </div>
-        <a href={html_url} target="_blank">follow</a>
+        <a href={html_url} target="_blank" rel="noopener noreferrer">follow</a>
       </header>
       <p className="bio">{bio}</p>
       <div className="links">

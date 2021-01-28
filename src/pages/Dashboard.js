@@ -13,7 +13,6 @@ const Dashboard = (store) => {
     let limitGithub = axios.get(`https://api.github.com/rate_limit`)
 
     Promise.all([userGithub, reposGithub, followersGithub, limitGithub]).then(values => {
-        console.log(values);
         store.dispatch({type: 'SET_GITHUB_DATA', payload: {user: values[0].data, repos: values[1].data, followers: values[2].data, limit: values[3].data}})
     }).catch(err => {
       if (err){
@@ -27,7 +26,7 @@ return (
       <Navbar/>
       <Search/>
       {store.isLoading ? (
-        <img src={loadingImage} className="loading-img" alt="Loading Image"/>
+        <img src={loadingImage} className="loading-img" alt="Loading"/>
       ) : (
         <>
           <Info/>
